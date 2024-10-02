@@ -21,7 +21,7 @@ const loginUser = async (req, res) => {
 
     const ismatch = await bcrypt.compare(password, user.password);
 
-    if (!ismatch) {
+    if (ismatch) {
       const token = createToken(user._id);
       res.json({ success: true, token });
     } else {
