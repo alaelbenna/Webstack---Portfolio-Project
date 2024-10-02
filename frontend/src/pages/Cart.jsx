@@ -39,15 +39,7 @@ const Cart = () => {
           cartData.map((item, index) => {
             const productData = products.find((product) => product._id === item._id);
 
-            // Check if productData exists before rendering
-            if (!productData) {
-              return (
-                <div key={index} className="py-4 border-t border-b text-gray-700">
-                  <p>Product not found. Please remove it from the cart.</p>
-                  <button onClick={() => updateQuantity(item._id, item.size, 0)}>Remove</button>
-                </div>
-              );
-            }
+           
 
             return (
               <div key={index} className='py-4 border-t border-b text-gray-700 grid grid-cols-4[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4'>
@@ -63,7 +55,7 @@ const Cart = () => {
                   </div>
                 </div>
                 <input
-                  onChange={(e) => e.target.value === '' || e.target.value === '0' ? null : updateQuantity(item._id, item.size, Number(e.target.value))}
+                  onChange={(e) => e.target.value === '' || e.target.value === '0' ? '' : updateQuantity(item._id, item.size, Number(e.target.value))}
                   className='border max-w-10 sm:max-w-w20 px-1 sm:px-2 py-1'
                   type="number"
                   min={1}
